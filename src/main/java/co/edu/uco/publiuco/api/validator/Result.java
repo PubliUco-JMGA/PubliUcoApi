@@ -25,8 +25,8 @@ public final class Result {
 		this.messages = UtilObject.getDefault(messages, new ArrayList<>());
 	}
 	public void addMessage(String message) {
-		if(!UtilText.getUtilText().isEmpty(message)) {
-			messages.add(UtilText.getUtilText().applyTrim(message));
+		if(!UtilText.isEmpty(message)) {
+			messages.add(UtilText.applyTrim(message));
 		}
 	}
 	public void addMessages(List<String> message) {

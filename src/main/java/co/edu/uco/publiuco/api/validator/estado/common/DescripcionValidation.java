@@ -4,7 +4,7 @@ import co.edu.uco.publiuco.api.validator.Result;
 import co.edu.uco.publiuco.api.validator.Validation;
 import co.edu.uco.publiuco.utils.UtilText;
 
-public class DescripcionValidation implements Validation{
+public class DescripcionValidation implements Validation<String>{
 
 	private DescripcionValidation() {
 		super();
@@ -16,23 +16,16 @@ public class DescripcionValidation implements Validation{
 	public Result execute(String data) {
 		var result = Result.create();
 		
-		if(UtilText.getUtilText().isEmpty(data)) {
+		if(UtilText.isEmpty(data)) {
 			result.addMessage("No es posible continuar con la descripción del estado vacío");
 			
 		}else {
-			if(true) { //tarea validar tamaño cadena
+			if(data.length() > 250) { 
 				result.addMessage("La descripcion del estado no puede ser mayor a 250 caracteres");
 			}
 			
-			
-			
 		}
 		return result;
-	}
-	@Override
-	public Result execute(Object data) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
