@@ -20,7 +20,7 @@ public class DescripcionValidation implements Validation<String>{
 			result.addMessage("No es posible continuar con la descripción del estado vacío");
 			
 		}else {
-			if(data.length() > 250) { 
+			if(UtilText.getUtilText().textHasLenghtAllowed(data, 0, 0)) { 
 				result.addMessage("La descripcion del estado no puede ser mayor a 250 caracteres");
 			}
 			

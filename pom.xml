@@ -34,7 +34,7 @@
 	  	</dependency>
 	  	<dependency>
 		 	<groupId>co.edu.uco.publiuco</groupId>
-  			<artifactId>PubliUcoBusiness</artifactId>
+  			<artifactId>PubliucoBusisness</artifactId>
   			<version>0.0.1-SNAPSHOT</version>
 	  	</dependency>
 	  	<dependency>
