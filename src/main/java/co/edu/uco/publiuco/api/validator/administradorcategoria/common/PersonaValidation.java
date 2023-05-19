@@ -18,7 +18,9 @@ public class PersonaValidation implements Validation<PersonaDTO>{
 		
 		if(UtilObject.isNull(data)) {
 			result.addMessage("No es posible continuar con los datos de la persona vacios");
-			
+		}
+		else if(UtilObject.isDefault(data, PersonaDTO.create())) {
+			result.addMessage("No es posible continuar con los datos de la persona con sus valores por defecto");
 		}
 		return result;
 	}

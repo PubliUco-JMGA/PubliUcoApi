@@ -26,7 +26,7 @@ public class ModificarEstadoValidation implements Validation<EstadoDTO>{
 			result.addMessages(NombreValidation.validate(data.getNombre()).getMessages());
 			result.addMessages(DescripcionValidation.validate(data.getDescripcion()).getMessages());
 			result.addMessages(IdentificadorValidation.validate(data.getIdentificador()).getMessages());
-			result.addMessages(TipoEstadoValidation.validate(data.getTipoEstado()).getMessages());
+			result.addMessages(TipoEstadoValidation.validate(data.getTipo()).getMessages());
 		}
 		return result;
 		

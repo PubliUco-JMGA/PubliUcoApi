@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.api.validator.Validation;
 import co.edu.uco.publiuco.utils.UtilText;
 
 public class CalificacionValidation implements Validation<String> {
+	private static final int MINIMUN_LENGHT = 1;
+	private static final int MAXIMUN_LENGHT = 5;
 	private CalificacionValidation() {
 		super();
 	}
@@ -16,8 +18,10 @@ public class CalificacionValidation implements Validation<String> {
 		var result = Result.create();
 		
 		if(UtilText.isEmpty(data)) {
-			result.addMessage("No es posible continuar con una calificacion vacia");
-			
+			result.addMessage("No es posible continuar con una calificación vacía");
+		}
+		else if(UtilText.getUtilText().textHasLenghtAllowed(data, MINIMUN_LENGHT, MAXIMUN_LENGHT)) { 
+			result.addMessage("La calificación debe estar entre 0 y 5");
 		}
 		return result;
 	}

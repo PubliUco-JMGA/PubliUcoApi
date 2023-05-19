@@ -11,17 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
+import co.edu.uco.publiuco.api.validator.administradorcategoria.EliminarAdministradorCategoriaValidation;
 import co.edu.uco.publiuco.api.validator.administradorcategoria.ModificarAdministradorCategoriaValidation;
 import co.edu.uco.publiuco.api.validator.administradorcategoria.RegistrarAdministradorCategoriaValidation;
-import co.edu.uco.publiuco.api.validator.estado.EliminarEstadoValidation;
 import co.edu.uco.publiuco.business.facade.AdministradorCategoriaFacade;
 import co.edu.uco.publiuco.business.facade.impl.AdministradorCategoriaFacadeImpl;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoException;
 import co.edu.uco.publiuco.dto.AdministradorCategoriaDTO;
 
+@RestController
+@RequestMapping("publiuco/api/v1/administradorcategoria")
 public class AdministradorCategoriaController {
 	private AdministradorCategoriaFacade facade;
 	
@@ -109,7 +113,7 @@ public class AdministradorCategoriaController {
 		var response = new Response<AdministradorCategoriaDTO>();
 		
 		try {
-			var result = EliminarEstadoValidation.validate(id);
+			var result = EliminarAdministradorCategoriaValidation.validate(id);
 			if(result.getMessages().isEmpty()) {
 				facade.drop(id);
 				response.getMessages().add("El administrador categoria fue eliminado de forma satisfactoria");

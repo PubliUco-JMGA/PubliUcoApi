@@ -18,7 +18,9 @@ public class EstadoValidation implements Validation<EstadoDTO>{
 		
 		if(UtilObject.isNull(data)) {
 			result.addMessage("No es posible continuar con el estado vacío");
-			
+		}
+		else if(UtilObject.isDefault(data, EstadoDTO.create())) {
+			result.addMessage("No es posible continuar con el Estado con sus valores por defecto");
 		}
 		return result;
 	}

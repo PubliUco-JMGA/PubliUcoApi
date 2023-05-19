@@ -6,6 +6,8 @@ import co.edu.uco.publiuco.utils.UtilText;
 
 public class DescripcionValidation implements Validation<String>{
 
+	private static final int MINIMUN_LENGHT = 0;
+	private static final int MAXIMUN_LENGHT = 200;
 	private DescripcionValidation() {
 		super();
 	}
@@ -20,8 +22,8 @@ public class DescripcionValidation implements Validation<String>{
 			result.addMessage("No es posible continuar con la descripción del estado vacío");
 			
 		}else {
-			if(UtilText.getUtilText().textHasLenghtAllowed(data, 0, 0)) { 
-				result.addMessage("La descripcion del estado no puede ser mayor a 250 caracteres");
+			if(UtilText.getUtilText().textHasLenghtAllowed(data, MINIMUN_LENGHT, MAXIMUN_LENGHT)) { 
+				result.addMessage("La descripcion del estado no puede ser mayor a 200 caracteres");
 			}
 			
 		}
