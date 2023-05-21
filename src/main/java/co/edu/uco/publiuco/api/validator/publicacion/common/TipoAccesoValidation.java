@@ -3,7 +3,6 @@ package co.edu.uco.publiuco.api.validator.publicacion.common;
 import co.edu.uco.publiuco.api.validator.Result;
 import co.edu.uco.publiuco.api.validator.Validation;
 import co.edu.uco.publiuco.dto.TipoAccesoDTO;
-import co.edu.uco.publiuco.dto.TipoEstadoDTO;
 import co.edu.uco.publiuco.utils.UtilObject;
 
 public class TipoAccesoValidation implements Validation<TipoAccesoDTO> {

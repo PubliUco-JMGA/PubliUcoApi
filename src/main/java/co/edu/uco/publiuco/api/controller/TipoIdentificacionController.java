@@ -16,7 +16,7 @@ import co.edu.uco.publiuco.api.controller.response.Response;
 import co.edu.uco.publiuco.dto.TipoIdentificacionDTO;
 
 @RestController
-@RequestMapping("publiuco/api/v1/estado")
+@RequestMapping("publiuco/api/v1/tipoidentificacion")
 public final class TipoIdentificacionController {
 	
 	

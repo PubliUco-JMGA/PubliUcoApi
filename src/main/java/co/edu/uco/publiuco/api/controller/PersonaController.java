@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
@@ -25,7 +25,7 @@ import co.edu.uco.publiuco.crosscutting.exception.PubliucoException;
 import co.edu.uco.publiuco.dto.PersonaDTO;
 
 @RestController
-@RequestMapping("publiuco/api/v1/administradorcategoria")
+@RequestMapping("publiuco/api/v1/persona")
 public class PersonaController {
 	private PersonaFacade facade;
 	
@@ -38,7 +38,7 @@ public class PersonaController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Response<PersonaDTO>> list(@RequestParam PersonaDTO dto) {
+	public ResponseEntity<Response<PersonaDTO>> list(@RequestBody PersonaDTO dto) {
 		List<PersonaDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -48,7 +48,7 @@ public class PersonaController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	@PostMapping
-	public ResponseEntity<Response<PersonaDTO>> create(@RequestParam PersonaDTO dto) {
+	public ResponseEntity<Response<PersonaDTO>> create(@RequestBody PersonaDTO dto) {
 		var statusCode = HttpStatus.OK;
 		Response<PersonaDTO> response = new Response<>();
 		
@@ -78,7 +78,7 @@ public class PersonaController {
 		return new ResponseEntity<>(response,statusCode);
 	}
 	@PutMapping
-	public ResponseEntity<Response<PersonaDTO>> update(@PathVariable UUID id, @RequestParam PersonaDTO dto) {
+	public ResponseEntity<Response<PersonaDTO>> update(@PathVariable UUID id, @RequestBody PersonaDTO dto) {
 		var statusCode = HttpStatus.OK;
 		var response = new Response<PersonaDTO>();
 		

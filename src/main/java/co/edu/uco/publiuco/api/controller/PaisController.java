@@ -17,7 +17,7 @@ import co.edu.uco.publiuco.dto.EstadoDTO;
 import co.edu.uco.publiuco.dto.PaisDTO;
 
 @RestController
-@RequestMapping("publiuco/api/v1/estado")
+@RequestMapping("publiuco/api/v1/pais")
 public final class PaisController {
 	
 	

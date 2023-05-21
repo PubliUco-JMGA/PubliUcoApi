@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
@@ -39,7 +39,7 @@ public class PublicacionController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Response<PublicacionDTO>> list(@RequestParam PublicacionDTO dto) {
+	public ResponseEntity<Response<PublicacionDTO>> list(@RequestBody PublicacionDTO dto) {
 		List<PublicacionDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -49,7 +49,7 @@ public class PublicacionController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	@PostMapping
-	public ResponseEntity<Response<PublicacionDTO>> create(@RequestParam PublicacionDTO dto) {
+	public ResponseEntity<Response<PublicacionDTO>> create(@RequestBody PublicacionDTO dto) {
 		var statusCode = HttpStatus.OK;
 		Response<PublicacionDTO> response = new Response<>();
 		
@@ -79,7 +79,7 @@ public class PublicacionController {
 		return new ResponseEntity<>(response,statusCode);
 	}
 	@PutMapping
-	public ResponseEntity<Response<AdministradorCategoriaDTO>> update(@PathVariable UUID id, @RequestParam PublicacionDTO dto) {
+	public ResponseEntity<Response<AdministradorCategoriaDTO>> update(@PathVariable UUID id, @RequestBody PublicacionDTO dto) {
 		var statusCode = HttpStatus.OK;
 		var response = new Response<AdministradorCategoriaDTO>();
 		

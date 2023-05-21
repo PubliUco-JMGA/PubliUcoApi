@@ -25,9 +25,9 @@ import co.edu.uco.publiuco.crosscutting.exception.PubliucoException;
 import co.edu.uco.publiuco.dto.LectorDTO;
 
 @RestController
-@RequestMapping("publiuco/api/v1/administradorcategoria")
+@RequestMapping("publiuco/api/v1/lector")
 public class LectorController {
-	private LectorFacade facade;
+private LectorFacade facade;
 	
 	public LectorController() {
 		facade = new LectorFacadeImpl();

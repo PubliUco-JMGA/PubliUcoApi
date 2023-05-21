@@ -1,6 +1,7 @@
 package co.edu.uco.publiuco.api.controller;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
 import co.edu.uco.publiuco.api.validator.comentariolector.ModificarComentarioLectorValidation;
@@ -22,6 +25,8 @@ import co.edu.uco.publiuco.business.facade.impl.ComentarioLectorFacadeImpl;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoException;
 import co.edu.uco.publiuco.dto.ComentarioLectorDTO;
 
+@RestController
+@RequestMapping("publiuco/api/v1/comentariolector")
 public class ComentarioLectorController {
 	
 	private ComentarioLectorFacade facade;
@@ -36,7 +41,7 @@ public class ComentarioLectorController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Response<ComentarioLectorDTO>> list(@RequestParam ComentarioLectorDTO dto) {
+	public ResponseEntity<Response<ComentarioLectorDTO>> list(@RequestBody ComentarioLectorDTO dto) {
 		List<ComentarioLectorDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -51,7 +56,7 @@ public class ComentarioLectorController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Response<ComentarioLectorDTO>> create(@RequestParam ComentarioLectorDTO dto) {
+	public ResponseEntity<Response<ComentarioLectorDTO>> create(@RequestBody ComentarioLectorDTO dto) {
 		var statusCode = HttpStatus.OK;
 		Response<ComentarioLectorDTO> response = new Response<>();
 		
@@ -81,7 +86,7 @@ public class ComentarioLectorController {
 		return new ResponseEntity<>(response,statusCode);
 	}
 	@PutMapping
-	public ResponseEntity<Response<ComentarioLectorDTO>> update(@PathVariable UUID id, @RequestParam ComentarioLectorDTO dto) {
+	public ResponseEntity<Response<ComentarioLectorDTO>> update(@PathVariable UUID id, @RequestBody ComentarioLectorDTO dto) {
 		var statusCode = HttpStatus.OK;
 		var response = new Response<ComentarioLectorDTO>();
 		

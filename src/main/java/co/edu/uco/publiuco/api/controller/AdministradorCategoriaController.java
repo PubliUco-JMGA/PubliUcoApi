@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
@@ -38,7 +38,7 @@ public class AdministradorCategoriaController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Response<AdministradorCategoriaDTO>> list(@RequestParam AdministradorCategoriaDTO dto) {
+	public ResponseEntity<Response<AdministradorCategoriaDTO>> list(@RequestBody AdministradorCategoriaDTO dto) {
 		List<AdministradorCategoriaDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -48,7 +48,7 @@ public class AdministradorCategoriaController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	@PostMapping
-	public ResponseEntity<Response<AdministradorCategoriaDTO>> create(@RequestParam AdministradorCategoriaDTO dto) {
+	public ResponseEntity<Response<AdministradorCategoriaDTO>> create(@RequestBody AdministradorCategoriaDTO dto) {
 		var statusCode = HttpStatus.OK;
 		Response<AdministradorCategoriaDTO> response = new Response<>();
 		
@@ -78,7 +78,7 @@ public class AdministradorCategoriaController {
 		return new ResponseEntity<>(response,statusCode);
 	}
 	@PutMapping
-	public ResponseEntity<Response<AdministradorCategoriaDTO>> update(@PathVariable UUID id, @RequestParam AdministradorCategoriaDTO dto) {
+	public ResponseEntity<Response<AdministradorCategoriaDTO>> update(@PathVariable UUID id, @RequestBody AdministradorCategoriaDTO dto) {
 		var statusCode = HttpStatus.OK;
 		var response = new Response<AdministradorCategoriaDTO>();
 		
