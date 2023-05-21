@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
@@ -38,7 +38,7 @@ private LectorFacade facade;
 	}
 	
 	@GetMapping
-	public ResponseEntity<Response<LectorDTO>> list(@RequestParam LectorDTO dto) {
+	public ResponseEntity<Response<LectorDTO>> list(@RequestBody LectorDTO dto) {
 		List<LectorDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -48,7 +48,7 @@ private LectorFacade facade;
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	@PostMapping
-	public ResponseEntity<Response<LectorDTO>> create(@RequestParam LectorDTO dto) {
+	public ResponseEntity<Response<LectorDTO>> create(@RequestBody LectorDTO dto) {
 		var statusCode = HttpStatus.OK;
 		Response<LectorDTO> response = new Response<>();
 		
@@ -78,7 +78,7 @@ private LectorFacade facade;
 		return new ResponseEntity<>(response,statusCode);
 	}
 	@PutMapping
-	public ResponseEntity<Response<LectorDTO>> update(@PathVariable UUID id, @RequestParam LectorDTO dto) {
+	public ResponseEntity<Response<LectorDTO>> update(@PathVariable UUID id, @RequestBody LectorDTO dto) {
 		var statusCode = HttpStatus.OK;
 		var response = new Response<LectorDTO>();
 		

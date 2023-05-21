@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
@@ -28,7 +28,7 @@ public final class TipoIdentificacionController {
 		return TipoIdentificacionDTO.create();
 	}
 	@GetMapping
-	public ResponseEntity<Response<TipoIdentificacionDTO>> list(@RequestParam TipoIdentificacionDTO dto) {
+	public ResponseEntity<Response<TipoIdentificacionDTO>> list(@RequestBody TipoIdentificacionDTO dto) {
 		List<TipoIdentificacionDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
