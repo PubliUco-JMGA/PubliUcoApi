@@ -20,7 +20,7 @@ public class RegistrarAdministradorCategoriaValidation implements Validation<Adm
 	public Result execute(final AdministradorCategoriaDTO data) {
 		var result = Result.create();
 		if(UtilObject.isNull(data)) {
-			result.addMessage("No es posible registrar un nuevo estado");
+			result.addMessage("No es posible registrar un nuevo adminsitrador categoria");
 		}else {
 			result.addMessages(PersonaValidation.validate(data.getPersona()).getMessages());
 			result.addMessages(IdentificadorValidation.validate(data.getIdentificador()).getMessages());
