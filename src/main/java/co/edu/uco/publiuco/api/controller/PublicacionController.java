@@ -26,7 +26,7 @@ import co.edu.uco.publiuco.dto.AdministradorCategoriaDTO;
 import co.edu.uco.publiuco.dto.PublicacionDTO;
 
 @RestController
-@RequestMapping("publiuco/api/v1/a")
+@RequestMapping("publiuco/api/v1/publicacion")
 public class PublicacionController {
 	private PublicacionFacade facade;
 	

@@ -5,23 +5,23 @@ import co.edu.uco.publiuco.api.validator.Validation;
 import co.edu.uco.publiuco.dto.PersonaDTO;
 import co.edu.uco.publiuco.utils.UtilObject;
 
-public class PersonaValidation implements Validation<PersonaDTO>{
-	private PersonaValidation() {
-		super();
-	}
-	public static final Result validate(final PersonaDTO data) {
-		return new PersonaValidation().execute(data);
-	}
-	@Override
-	public Result execute(PersonaDTO data) {
-		var result = Result.create();
-		
-		if(UtilObject.isNull(data)) {
-			result.addMessage("No es posible continuar con los datos de la persona vacios");
+	public class PersonaValidation implements Validation<PersonaDTO>{
+		private PersonaValidation() {
+			super();
 		}
-		else if(UtilObject.isDefault(data, PersonaDTO.create())) {
-			result.addMessage("No es posible continuar con los datos de la persona con sus valores por defecto");
+		public static final Result validate(final PersonaDTO data) {
+			return new PersonaValidation().execute(data);
 		}
-		return result;
+		@Override
+		public Result execute(PersonaDTO data) {
+			var result = Result.create();
+			
+			if(UtilObject.isNull(data)) {
+				result.addMessage("No es posible continuar con los datos de la persona vacios");
+			}
+			else if(UtilObject.isDefault(data, PersonaDTO.create())) {
+				result.addMessage("No es posible continuar con los datos de la persona con sus valores por defecto");
+			}
+			return result;
+		}
 	}
-}

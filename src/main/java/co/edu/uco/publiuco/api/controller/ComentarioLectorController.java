@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
+import co.edu.uco.publiuco.api.validator.comentariolector.EliminarComentarioLectorValidation;
 import co.edu.uco.publiuco.api.validator.comentariolector.ModificarComentarioLectorValidation;
 import co.edu.uco.publiuco.api.validator.comentariolector.RegistrarComentarioLectorValidation;
-import co.edu.uco.publiuco.api.validator.estado.EliminarEstadoValidation;
 import co.edu.uco.publiuco.business.facade.ComentarioLectorFacade;
 import co.edu.uco.publiuco.business.facade.impl.ComentarioLectorFacadeImpl;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoException;
@@ -121,7 +121,7 @@ public class ComentarioLectorController {
 		var response = new Response<ComentarioLectorDTO>();
 		
 		try {
-			var result = EliminarEstadoValidation.validate(id);
+			var result = EliminarComentarioLectorValidation.validate(id);
 			if(result.getMessages().isEmpty()) {
 				facade.drop(id);
 				response.getMessages().add("El comentario fue eliminado de forma satisfactoria");

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,24 +13,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
+import co.edu.uco.publiuco.api.validator.calificacion.EliminarCalificacionValidation;
 import co.edu.uco.publiuco.api.validator.calificacion.ModificarCalificacionValidation;
 import co.edu.uco.publiuco.api.validator.calificacion.RegistrarCalificacionValidation;
-import co.edu.uco.publiuco.api.validator.estado.EliminarEstadoValidation;
 import co.edu.uco.publiuco.business.facade.CalificacionFacade;
 import co.edu.uco.publiuco.business.facade.impl.CalificacionFacadeImpl;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoException;
 import co.edu.uco.publiuco.dto.CalificacionDTO;
 
+@RestController
+@RequestMapping("publiuco/api/v1/calificacion")
 public class CalificacionController {
 	
+	private Logger log = LoggerFactory.getLogger(CalificacionController.class);
+
 	private CalificacionFacade facade;
 	
-	public CalificacionController() {
-		facade = new CalificacionFacadeImpl();
-	}
+	
 	@GetMapping("/dummy")
 	public CalificacionDTO dummy() {
 		return CalificacionDTO.create();
@@ -50,6 +56,7 @@ public class CalificacionController {
 	}
 	@PostMapping
 	public ResponseEntity<Response<CalificacionDTO>> create(@RequestParam CalificacionDTO dto) {
+		facade = new CalificacionFacadeImpl();
 		var statusCode = HttpStatus.OK;
 		Response<CalificacionDTO> response = new Response<>();
 		
@@ -65,14 +72,12 @@ public class CalificacionController {
 		}catch (PubliucoException exception) {
 			statusCode = HttpStatus.BAD_REQUEST;
 			response.getMessages().add(exception.getUserMessage());
-			System.err.println(exception.getTechnicalMessage());
-			System.err.println(exception.getType());
-			exception.printStackTrace();
+			log.error(exception.getType().toString().concat("-").concat(exception.getTechnicalMessage()),exception);
 			
 		}catch (Exception exception) {
 			statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			response.getMessages().add("Se ha presentado un problema inesperado. Por favor contacte con el administrador del sistema");
-			System.err.println(exception.getMessage());
+			log.error("Se ha presentado un problema inesperado. Por favor, validar la consola");
 			exception.printStackTrace();
 		}
 		
@@ -80,6 +85,7 @@ public class CalificacionController {
 	}
 	@PutMapping
 	public ResponseEntity<Response<CalificacionDTO>> update(@PathVariable UUID id, @RequestParam CalificacionDTO dto) {
+		facade = new CalificacionFacadeImpl();
 		var statusCode = HttpStatus.OK;
 		var response = new Response<CalificacionDTO>();
 		
@@ -95,26 +101,26 @@ public class CalificacionController {
 		}catch (PubliucoException exception) {
 			statusCode = HttpStatus.BAD_REQUEST;
 			response.getMessages().add(exception.getUserMessage());
-			System.err.println(exception.getTechnicalMessage());
-			System.err.println(exception.getType());
-			exception.printStackTrace();
+			log.error(exception.getType().toString().concat("-").concat(exception.getTechnicalMessage()),exception);
+
 			
 		}catch (Exception exception) {
 			statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			response.getMessages().add("Se ha presentado un problema inesperado. Por favor contacte con el administrador del sistema");
-			System.err.println(exception.getMessage());
-			exception.printStackTrace();
+			log.error("Se ha presentado un problema inesperado. Por favor, validar la consola");
+
 		}
 		
 		return new ResponseEntity<>(response,statusCode);
 	}
 	@DeleteMapping
 	public ResponseEntity<Response<CalificacionDTO>> drop(@PathVariable UUID id) {
-		var statusCode = HttpStatus.OK;
+		
+		facade = new CalificacionFacadeImpl();var statusCode = HttpStatus.OK;
 		var response = new Response<CalificacionDTO>();
 		
 		try {
-			var result = EliminarEstadoValidation.validate(id);
+			var result = EliminarCalificacionValidation.validate(id);
 			if(result.getMessages().isEmpty()) {
 				facade.drop(id);
 				response.getMessages().add("La calificacion fue eliminada de forma satisfactoria");
@@ -125,15 +131,13 @@ public class CalificacionController {
 		}catch (PubliucoException exception) {
 			statusCode = HttpStatus.BAD_REQUEST;
 			response.getMessages().add(exception.getUserMessage());
-			System.err.println(exception.getTechnicalMessage());
-			System.err.println(exception.getType());
-			exception.printStackTrace();
+			log.error(exception.getType().toString().concat("-").concat(exception.getTechnicalMessage()),exception);
 			
 		}catch (Exception exception) {
 			statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			response.getMessages().add("Se ha presentado un problema inesperado. Por favor contacte con el administrador del sistema");
-			System.err.println(exception.getMessage());
-			exception.printStackTrace();
+			log.error("Se ha presentado un problema inesperado. Por favor, validar la consola");
+
 		}
 		
 		return new ResponseEntity<>(response,statusCode);
