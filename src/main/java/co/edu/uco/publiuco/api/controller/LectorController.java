@@ -29,9 +29,6 @@ import co.edu.uco.publiuco.dto.LectorDTO;
 public class LectorController {
 private LectorFacade facade;
 	
-	public LectorController() {
-		facade = new LectorFacadeImpl();
-	}
 	@GetMapping("/dummy")
 	public LectorDTO dummy() {
 		return LectorDTO.create();
@@ -49,6 +46,8 @@ private LectorFacade facade;
 	}
 	@PostMapping
 	public ResponseEntity<Response<LectorDTO>> create(@RequestBody LectorDTO dto) {
+		facade = new LectorFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		Response<LectorDTO> response = new Response<>();
 		
@@ -79,6 +78,8 @@ private LectorFacade facade;
 	}
 	@PutMapping
 	public ResponseEntity<Response<LectorDTO>> update(@PathVariable UUID id, @RequestBody LectorDTO dto) {
+		facade = new LectorFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<LectorDTO>();
 		
@@ -109,6 +110,8 @@ private LectorFacade facade;
 	}
 	@DeleteMapping
 	public ResponseEntity<Response<LectorDTO>> drop(@PathVariable UUID id) {
+		facade = new LectorFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<LectorDTO>();
 		

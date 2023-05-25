@@ -29,9 +29,6 @@ import co.edu.uco.publiuco.dto.PersonaDTO;
 public class PersonaController {
 	private PersonaFacade facade;
 	
-	public PersonaController() {
-		facade = new PersonaFacadeImpl();
-	}
 	@GetMapping("/dummy")
 	public PersonaDTO dummy() {
 		return PersonaDTO.create();
@@ -49,6 +46,8 @@ public class PersonaController {
 	}
 	@PostMapping
 	public ResponseEntity<Response<PersonaDTO>> create(@RequestBody PersonaDTO dto) {
+		facade = new PersonaFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		Response<PersonaDTO> response = new Response<>();
 		
@@ -79,6 +78,8 @@ public class PersonaController {
 	}
 	@PutMapping
 	public ResponseEntity<Response<PersonaDTO>> update(@PathVariable UUID id, @RequestBody PersonaDTO dto) {
+		facade = new PersonaFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<PersonaDTO>();
 		
@@ -109,6 +110,8 @@ public class PersonaController {
 	}
 	@DeleteMapping
 	public ResponseEntity<Response<PersonaDTO>> drop(@PathVariable UUID id) {
+		facade = new PersonaFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<PersonaDTO>();
 		

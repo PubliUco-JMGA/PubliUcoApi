@@ -31,9 +31,6 @@ import co.edu.uco.publiuco.dto.CategoriaDTO;
 public class CategoriaController {
 	private CategoriaFacade facade;
 	
-	public CategoriaController() {
-		facade = new CategoriaFacadeImpl();
-	}
 	@GetMapping("/dummy")
 	public AdministradorCategoriaDTO dummy() {
 		return AdministradorCategoriaDTO.create();
@@ -41,6 +38,8 @@ public class CategoriaController {
 	
 	@GetMapping
 	public ResponseEntity<Response<CategoriaDTO>> list(@RequestParam CategoriaDTO dto) {
+		facade = new CategoriaFacadeImpl();
+
 		List<CategoriaDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -51,6 +50,8 @@ public class CategoriaController {
 	}
 	@PostMapping
 	public ResponseEntity<Response<CategoriaDTO>> create(@RequestParam CategoriaDTO dto) {
+		facade = new CategoriaFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		Response<CategoriaDTO> response = new Response<>();
 		
@@ -81,6 +82,8 @@ public class CategoriaController {
 	}
 	@PutMapping
 	public ResponseEntity<Response<CategoriaDTO>> update(@PathVariable UUID id, @RequestParam CategoriaDTO dto) {
+		facade = new CategoriaFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<CategoriaDTO>();
 		
@@ -111,6 +114,8 @@ public class CategoriaController {
 	}
 	@DeleteMapping
 	public ResponseEntity<Response<CategoriaDTO>> drop(@PathVariable UUID id) {
+		facade = new CategoriaFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<CategoriaDTO>();
 		

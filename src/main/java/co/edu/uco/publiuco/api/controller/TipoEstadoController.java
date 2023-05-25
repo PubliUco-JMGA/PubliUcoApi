@@ -23,15 +23,14 @@ public final class TipoEstadoController {
 	
 	private TipoEstadoFacade facade;
 	
-	public TipoEstadoController() {
-		facade = new TipoEstadoFacadeImpl();
-	}
 	@GetMapping("/dummy")
 	public TipoEstadoDTO dummy() {
 		return TipoEstadoDTO.create();
 	}
 	@GetMapping
 	public ResponseEntity<Response<TipoEstadoDTO>> list(@RequestBody TipoEstadoDTO dto) {
+		facade = new TipoEstadoFacadeImpl();
+
 		List<TipoEstadoDTO> list = facade.list(dto);
 		
 		List<String> messages = new ArrayList<>();

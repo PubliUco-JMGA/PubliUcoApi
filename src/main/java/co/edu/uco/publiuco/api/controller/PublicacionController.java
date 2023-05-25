@@ -30,9 +30,6 @@ import co.edu.uco.publiuco.dto.PublicacionDTO;
 public class PublicacionController {
 	private PublicacionFacade facade;
 	
-	public PublicacionController() {
-		facade = new PublicacionFacadeImpl();
-	}
 	@GetMapping("/dummy")
 	public PublicacionDTO dummy() {
 		return PublicacionDTO.create();
@@ -40,6 +37,7 @@ public class PublicacionController {
 	
 	@GetMapping
 	public ResponseEntity<Response<PublicacionDTO>> list(@RequestBody PublicacionDTO dto) {
+		
 		List<PublicacionDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -50,6 +48,8 @@ public class PublicacionController {
 	}
 	@PostMapping
 	public ResponseEntity<Response<PublicacionDTO>> create(@RequestBody PublicacionDTO dto) {
+		facade = new PublicacionFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		Response<PublicacionDTO> response = new Response<>();
 		
@@ -80,6 +80,8 @@ public class PublicacionController {
 	}
 	@PutMapping
 	public ResponseEntity<Response<AdministradorCategoriaDTO>> update(@PathVariable UUID id, @RequestBody PublicacionDTO dto) {
+		facade = new PublicacionFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<AdministradorCategoriaDTO>();
 		
@@ -110,6 +112,8 @@ public class PublicacionController {
 	}
 	@DeleteMapping
 	public ResponseEntity<Response<PublicacionDTO>> drop(@PathVariable UUID id) {
+		facade = new PublicacionFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<PublicacionDTO>();
 		

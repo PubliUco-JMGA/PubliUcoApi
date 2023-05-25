@@ -29,9 +29,7 @@ import co.edu.uco.publiuco.dto.AdministradorCategoriaDTO;
 public class AdministradorCategoriaController {
 	private AdministradorCategoriaFacade facade;
 	
-	public AdministradorCategoriaController() {
-		facade = new AdministradorCategoriaFacadeImpl();
-	}
+	
 	@GetMapping("/dummy")
 	public AdministradorCategoriaDTO dummy() {
 		return AdministradorCategoriaDTO.create();
@@ -39,6 +37,8 @@ public class AdministradorCategoriaController {
 	
 	@GetMapping
 	public ResponseEntity<Response<AdministradorCategoriaDTO>> list(@RequestBody AdministradorCategoriaDTO dto) {
+		facade = new AdministradorCategoriaFacadeImpl();
+
 		List<AdministradorCategoriaDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -49,6 +49,8 @@ public class AdministradorCategoriaController {
 	}
 	@PostMapping
 	public ResponseEntity<Response<AdministradorCategoriaDTO>> create(@RequestBody AdministradorCategoriaDTO dto) {
+		facade = new AdministradorCategoriaFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		Response<AdministradorCategoriaDTO> response = new Response<>();
 		
@@ -79,6 +81,8 @@ public class AdministradorCategoriaController {
 	}
 	@PutMapping
 	public ResponseEntity<Response<AdministradorCategoriaDTO>> update(@PathVariable UUID id, @RequestBody AdministradorCategoriaDTO dto) {
+		facade = new AdministradorCategoriaFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<AdministradorCategoriaDTO>();
 		
@@ -109,6 +113,8 @@ public class AdministradorCategoriaController {
 	}
 	@DeleteMapping
 	public ResponseEntity<Response<AdministradorCategoriaDTO>> drop(@PathVariable UUID id) {
+		facade = new AdministradorCategoriaFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<AdministradorCategoriaDTO>();
 		

@@ -31,9 +31,6 @@ public class ComentarioLectorController {
 	
 	private ComentarioLectorFacade facade;
 	
-	public ComentarioLectorController() {
-		facade = new ComentarioLectorFacadeImpl();
-	}
 	
 	@GetMapping("/dummy")
 	public ComentarioLectorDTO dummy() {
@@ -42,6 +39,8 @@ public class ComentarioLectorController {
 	
 	@GetMapping
 	public ResponseEntity<Response<ComentarioLectorDTO>> list(@RequestBody ComentarioLectorDTO dto) {
+		facade = new ComentarioLectorFacadeImpl();
+
 		List<ComentarioLectorDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -57,6 +56,8 @@ public class ComentarioLectorController {
 	
 	@PostMapping
 	public ResponseEntity<Response<ComentarioLectorDTO>> create(@RequestBody ComentarioLectorDTO dto) {
+		facade = new ComentarioLectorFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		Response<ComentarioLectorDTO> response = new Response<>();
 		
@@ -87,6 +88,8 @@ public class ComentarioLectorController {
 	}
 	@PutMapping
 	public ResponseEntity<Response<ComentarioLectorDTO>> update(@PathVariable UUID id, @RequestBody ComentarioLectorDTO dto) {
+		facade = new ComentarioLectorFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<ComentarioLectorDTO>();
 		
@@ -117,6 +120,8 @@ public class ComentarioLectorController {
 	}
 	@DeleteMapping
 	public ResponseEntity<Response<ComentarioLectorDTO>> drop(@PathVariable UUID id) {
+		facade = new ComentarioLectorFacadeImpl();
+
 		var statusCode = HttpStatus.OK;
 		var response = new Response<ComentarioLectorDTO>();
 		

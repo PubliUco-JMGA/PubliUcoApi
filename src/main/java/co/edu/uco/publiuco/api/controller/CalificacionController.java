@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
@@ -41,7 +41,7 @@ public class CalificacionController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Response<CalificacionDTO>> list(@RequestParam CalificacionDTO dto) {
+	public ResponseEntity<Response<CalificacionDTO>> list(@RequestBody CalificacionDTO dto) {
 		List<CalificacionDTO> list = new ArrayList<>();
 		
 		List<String> messages = new ArrayList<>();
@@ -55,7 +55,7 @@ public class CalificacionController {
 		return CalificacionDTO.create().setIdentificador(id);
 	}
 	@PostMapping
-	public ResponseEntity<Response<CalificacionDTO>> create(@RequestParam CalificacionDTO dto) {
+	public ResponseEntity<Response<CalificacionDTO>> create(@RequestBody CalificacionDTO dto) {
 		facade = new CalificacionFacadeImpl();
 		var statusCode = HttpStatus.OK;
 		Response<CalificacionDTO> response = new Response<>();
@@ -84,7 +84,7 @@ public class CalificacionController {
 		return new ResponseEntity<>(response,statusCode);
 	}
 	@PutMapping
-	public ResponseEntity<Response<CalificacionDTO>> update(@PathVariable UUID id, @RequestParam CalificacionDTO dto) {
+	public ResponseEntity<Response<CalificacionDTO>> update(@PathVariable UUID id, @RequestBody CalificacionDTO dto) {
 		facade = new CalificacionFacadeImpl();
 		var statusCode = HttpStatus.OK;
 		var response = new Response<CalificacionDTO>();
