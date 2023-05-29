@@ -22,9 +22,7 @@ public class IdentificadorValidation implements Validation<UUID> {
 		if(UtilObject.isNull(data)) {
 			result.addMessage("No es posible continuar con el identificador del comentario vacío");
 			
-		}else if(UtilUUID.isDefault(data)) {
-			result.addMessage("No es posible tener el identificador por defecto del comentario");
-		}
+		}	
 		return result;
 	}
 

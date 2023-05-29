@@ -22,7 +22,7 @@ public class ContenidoValidation implements Validation<String>{
 			result.addMessage("No es posible continuar con el contenido vacío");
 			
 		}else {
-			if(UtilText.getUtilText().textHasLenghtAllowed(data, MINIMUN_LENGHT, MAXIMUN_LENGHT)) { 
+			if(!UtilText.getUtilText().textHasLenghtAllowed(data, MINIMUN_LENGHT, MAXIMUN_LENGHT)) { 
 				result.addMessage("El contenido del comentario no puede ser mayor a 250 caracteres");
 			}
 		

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.publiuco.api.controller.response.Response;
@@ -22,7 +22,6 @@ import co.edu.uco.publiuco.api.validator.categoria.RegistrarCategoriaValidation;
 import co.edu.uco.publiuco.business.facade.CategoriaFacade;
 import co.edu.uco.publiuco.business.facade.impl.CategoriaFacadeImpl;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoException;
-import co.edu.uco.publiuco.dto.AdministradorCategoriaDTO;
 import co.edu.uco.publiuco.dto.CategoriaDTO;
 
 
@@ -32,15 +31,15 @@ public class CategoriaController {
 	private CategoriaFacade facade;
 	
 	@GetMapping("/dummy")
-	public AdministradorCategoriaDTO dummy() {
-		return AdministradorCategoriaDTO.create();
+	public CategoriaDTO dummy() {
+		return CategoriaDTO.create();
 	}
 	
 	@GetMapping
-	public ResponseEntity<Response<CategoriaDTO>> list(@RequestParam CategoriaDTO dto) {
+	public ResponseEntity<Response<CategoriaDTO>> list(@RequestBody CategoriaDTO dto) {
 		facade = new CategoriaFacadeImpl();
 
-		List<CategoriaDTO> list = new ArrayList<>();
+		List<CategoriaDTO> list = facade.list(dto);
 		
 		List<String> messages = new ArrayList<>();
 		messages.add("Categorias consultadas exitosamente");
@@ -49,7 +48,7 @@ public class CategoriaController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	@PostMapping
-	public ResponseEntity<Response<CategoriaDTO>> create(@RequestParam CategoriaDTO dto) {
+	public ResponseEntity<Response<CategoriaDTO>> create(@RequestBody CategoriaDTO dto) {
 		facade = new CategoriaFacadeImpl();
 
 		var statusCode = HttpStatus.OK;
@@ -81,7 +80,7 @@ public class CategoriaController {
 		return new ResponseEntity<>(response,statusCode);
 	}
 	@PutMapping
-	public ResponseEntity<Response<CategoriaDTO>> update(@PathVariable UUID id, @RequestParam CategoriaDTO dto) {
+	public ResponseEntity<Response<CategoriaDTO>> update(@PathVariable UUID id, @RequestBody CategoriaDTO dto) {
 		facade = new CategoriaFacadeImpl();
 
 		var statusCode = HttpStatus.OK;
@@ -144,4 +143,5 @@ public class CategoriaController {
 		
 		return new ResponseEntity<>(response,statusCode);
 	}
+	
 }

@@ -26,7 +26,6 @@ public class RegistrarComentarioLectorValidation implements Validation<Comentari
 		if(UtilObject.isNull(data)) {
 			result.addMessage("No es posible registrar un nuevo comentario");
 		}else {
-			result.addMessages(ComentarioLectorValidation.validate(data.getComentarioPadre()).getMessages());
 			result.addMessages(ContenidoValidation.validate(data.getCotenido()).getMessages());
 			result.addMessages(EstadoValidation.validate(data.getEstado()).getMessages());
 			result.addMessages(FechaComentarioValidation.validate(data.getFechaComentario()).getMessages());

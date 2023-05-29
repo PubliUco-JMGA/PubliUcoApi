@@ -19,9 +19,6 @@ public class ComentarioLectorValidation implements Validation<ComentarioLectorDT
 		if(UtilObject.isNull(data)) {
 			result.addMessage("No es posible continuar con el Comentario vacío");	
 		}
-		else if(UtilObject.isDefault(data, ComentarioLectorDTO.create())) {
-			result.addMessage("No es posible continuar con el Comentario con sus valores por defecto");
-		}
 		return result;
 	}
 }

@@ -36,7 +36,6 @@ public class ComentarioLectorController {
 	public ComentarioLectorDTO dummy() {
 		return ComentarioLectorDTO.create();
 	}
-	
 	@GetMapping
 	public ResponseEntity<Response<ComentarioLectorDTO>> list(@RequestBody ComentarioLectorDTO dto) {
 		facade = new ComentarioLectorFacadeImpl();
