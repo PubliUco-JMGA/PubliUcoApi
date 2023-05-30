@@ -42,7 +42,8 @@ public class CalificacionController {
 	
 	@GetMapping
 	public ResponseEntity<Response<CalificacionDTO>> list(@RequestBody CalificacionDTO dto) {
-		List<CalificacionDTO> list = new ArrayList<>();
+		facade = new CalificacionFacadeImpl();
+		List<CalificacionDTO> list = facade.list(dto);
 		
 		List<String> messages = new ArrayList<>();
 		messages.add("Calificaciones consultadas exitosamente");
@@ -78,7 +79,6 @@ public class CalificacionController {
 			statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			response.getMessages().add("Se ha presentado un problema inesperado. Por favor contacte con el administrador del sistema");
 			log.error("Se ha presentado un problema inesperado. Por favor, validar la consola");
-			exception.printStackTrace();
 		}
 		
 		return new ResponseEntity<>(response,statusCode);

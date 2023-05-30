@@ -20,7 +20,6 @@ import co.edu.uco.publiuco.dto.EstadoDTO;
 @RestController
 @RequestMapping("publiuco/api/v1/estado")
 public final class EstadoController {
-	
 	private EstadoFacade facade;
 	public EstadoController() {
 		super();

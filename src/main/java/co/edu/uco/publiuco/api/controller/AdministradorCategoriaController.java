@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +31,8 @@ import co.edu.uco.publiuco.dto.AdministradorCategoriaDTO;
 public class AdministradorCategoriaController {
 	private AdministradorCategoriaFacade facade;
 	
-	
+	private Logger log = LoggerFactory.getLogger(AdministradorCategoriaController.class);
+
 	@GetMapping("/dummy")
 	public AdministradorCategoriaDTO dummy() {
 		return AdministradorCategoriaDTO.create();
@@ -66,15 +69,12 @@ public class AdministradorCategoriaController {
 		}catch (PubliucoException exception) {
 			statusCode = HttpStatus.BAD_REQUEST;
 			response.getMessages().add(exception.getUserMessage());
-			System.err.println(exception.getTechnicalMessage());
-			System.err.println(exception.getType());
-			exception.printStackTrace();
+			log.error(exception.getType().toString().concat("-").concat(exception.getTechnicalMessage()),exception);
 			
 		}catch (Exception exception) {
 			statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			response.getMessages().add("Se ha presentado un problema inesperado. Por favor contacte con el administrador del sistema");
-			System.err.println(exception.getMessage());
-			exception.printStackTrace();
+			log.error("Se ha presentado un problema inesperado. Por favor, validar la consola");
 		}
 		
 		return new ResponseEntity<>(response,statusCode);
@@ -98,15 +98,13 @@ public class AdministradorCategoriaController {
 		}catch (PubliucoException exception) {
 			statusCode = HttpStatus.BAD_REQUEST;
 			response.getMessages().add(exception.getUserMessage());
-			System.err.println(exception.getTechnicalMessage());
-			System.err.println(exception.getType());
-			exception.printStackTrace();
+			log.error(exception.getType().toString().concat("-").concat(exception.getTechnicalMessage()),exception);
+
 			
 		}catch (Exception exception) {
 			statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			response.getMessages().add("Se ha presentado un problema inesperado. Por favor contacte con el administrador del sistema");
-			System.err.println(exception.getMessage());
-			exception.printStackTrace();
+			log.error("Se ha presentado un problema inesperado. Por favor, validar la consola");
 		}
 		
 		return new ResponseEntity<>(response,statusCode);
@@ -130,15 +128,14 @@ public class AdministradorCategoriaController {
 		}catch (PubliucoException exception) {
 			statusCode = HttpStatus.BAD_REQUEST;
 			response.getMessages().add(exception.getUserMessage());
-			System.err.println(exception.getTechnicalMessage());
-			System.err.println(exception.getType());
-			exception.printStackTrace();
+			log.error(exception.getType().toString().concat("-").concat(exception.getTechnicalMessage()),exception);
+
 			
 		}catch (Exception exception) {
 			statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			response.getMessages().add("Se ha presentado un problema inesperado. Por favor contacte con el administrador del sistema");
-			System.err.println(exception.getMessage());
-			exception.printStackTrace();
+			log.error("Se ha presentado un problema inesperado. Por favor, validar la consola");
+
 		}
 		
 		return new ResponseEntity<>(response,statusCode);
